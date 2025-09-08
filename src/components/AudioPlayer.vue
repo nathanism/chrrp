@@ -11,7 +11,7 @@ player.playbackRate = 1
 
 let timer: ReturnType<typeof setInterval>
 const interval = ref<number>(3)
-const volume = ref<number>(1)
+const volume = ref<number>(1 * 100)
 const isPlaying = ref(false)
 
 watch(isPlaying, async (playStatus) => {
@@ -61,16 +61,32 @@ const startPlayer = (time: number) => {
 
 <template>
   <div class="flex flex-col">
-    <label for="interval-control">Interval in seconds</label>
+    <div class="flex justify-between">
+      <label for="interval-control">Interval</label>
+      <span>{{ interval }} seconds</span>
+    </div>
     <input v-model="interval" id="interval-control" type="range" min="1" max="100"
-      class="text-base font-medium text-gray-500 mb-1">
-    <div>{{ interval }}</div>
-    <label for="volume">Volume</label>
-    <input v-model="volume" id="volume" type="range" min="1" max="100" class="text-base font-medium text-gray-500 mb-1">
-    <div>{{ volume }}</div>
-    <button @click="isPlaying = !isPlaying" class="bg-gray-400">
-      {{ isPlaying ? 'Stop' : 'Start' }}
-    </button>
+      class="range rounded-full border-0 bg-gray-200 accent-black text-base font-medium text-gray-500 mb-1">
+    <div class="flex justify-between">
+      <span>1</span>
+      <span>100</span>
+    </div>
+    <div class="flex justify-between">
+      <label for="volume-control">Volume</label>
+      <span>{{ volume }}%</span>
+    </div>
+    <input v-model="volume" id="volume-control" type="range" min="1" max="100"
+      class="range rounded-full border-0 bg-gray-200 accent-black text-base font-medium text-gray-500 mb-1">
+    <div class="flex justify-between">
+      <span>1</span>
+      <span>100</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <button @click="isPlaying = !isPlaying"
+        class="py-2 px-8 rounded-xl bg-transparent border-black border-3 text-xl font-bold">
+        {{ isPlaying ? 'Stop' : 'Start' }}
+      </button>
+    </div>
   </div>
 </template>
 
