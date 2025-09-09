@@ -61,25 +61,29 @@ const startPlayer = (time: number) => {
 
 <template>
   <div class="flex flex-col">
-    <div class="flex justify-between">
-      <label for="interval-control">Interval</label>
-      <span>{{ interval }} seconds</span>
+    <div class="flex flex-col p-3">
+      <div class="flex justify-between">
+        <label for="interval-control">Interval</label>
+        <span>{{ interval }} seconds</span>
+      </div>
+      <input v-model="interval" id="interval-control" type="range" min="1" max="100"
+        class="range rounded-full border-0 bg-gray-200 accent-black text-base font-medium text-gray-500 m-0 p-0">
+      <div class="flex justify-between text-xs">
+        <span>1</span>
+        <span>100</span>
+      </div>
     </div>
-    <input v-model="interval" id="interval-control" type="range" min="1" max="100"
-      class="range rounded-full border-0 bg-gray-200 accent-black text-base font-medium text-gray-500 mb-1">
-    <div class="flex justify-between">
-      <span>1</span>
-      <span>100</span>
-    </div>
-    <div class="flex justify-between">
-      <label for="volume-control">Volume</label>
-      <span>{{ volume }}%</span>
-    </div>
-    <input v-model="volume" id="volume-control" type="range" min="1" max="100"
-      class="range rounded-full border-0 bg-gray-200 accent-black text-base font-medium text-gray-500 mb-1">
-    <div class="flex justify-between">
-      <span>1</span>
-      <span>100</span>
+    <div class="flex flex-col p-3">
+      <div class="flex justify-between">
+        <label for="volume-control">Volume</label>
+        <span>{{ volume }}%</span>
+      </div>
+      <input v-model="volume" id="volume-control" type="range" min="1" max="100"
+        class="range rounded-full border-0 bg-gray-200 accent-black text-base font-medium text-gray-500 m-0 p-0">
+      <div class="flex justify-between text-xs">
+        <span>1</span>
+        <span>100</span>
+      </div>
     </div>
     <div class="flex flex-col items-center">
       <button @click="isPlaying = !isPlaying"
