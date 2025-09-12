@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 
 import soundUrl from '@/assets/sounds/chrrp.mp3'
 
@@ -16,7 +16,7 @@ const isPlaying = ref(false)
 
 watch(isPlaying, async (playStatus) => {
   if (playStatus == true) {
-    console.log("Watch start - interval " + interval.value)
+    console.log("Watch start. Interval: " + interval.value)
     startPlayer(interval.value)
   }
   else {
@@ -53,9 +53,9 @@ const startPlayer = (time: number) => {
   timer = setInterval(playSound, time * 1000)
 }
 
-// onMounted(() => {
-//   player.value?.play();
-// })
+onMounted(() => {
+  isPlaying.value = false
+})
 
 </script>
 
